@@ -103,4 +103,176 @@ function laugh() {
     console.log(`Ha hahaha`)
 }
 
-callThreeTime(laugh)
+function cry() {
+    alert(`Bo ho ho ho ho`)
+}
+
+//callThreeTime(laugh)
+
+function repeatNTime(funct, num) {
+    for (let i = 0; i < num; i++) {
+        funct()
+
+    }
+}
+
+//repeatNTime(laugh, 5)
+
+function randomCallFunc(func1, func2) {
+    let a = Math.floor(Math.random() * 2)
+    a ? func1() : func2()
+}
+
+// randomCallFunc(laugh, cry)
+
+// Functions as return values
+
+function makeBetweenFunc(min, max) {
+    return function (val) {
+        return val >= min && val <= max;
+    }
+}
+
+const inAgeRange = makeBetweenFunc(18, 100)
+//console.log(inAgeRange(17))
+
+//Callback Funtions
+// A function passed in to be called by an outer function
+function yoYo() {
+    alert(`Yo you go away`)
+}
+
+setTimeout(yoYo, 2000)
+
+// or pass an anonymous callback function
+setTimeout(function () {
+    alert(`Using anonymous functions`)
+}, 7000)
+
+const btn = document.querySelector('button')
+btn.addEventListener('click', cry)
+
+//Array methods with callbacks
+//forEach
+const numbers = [20, 21, 22, 23, 24, 25, 26, 27]
+numbers.forEach(function (el) {
+    console.log(el ** 2)
+})
+
+const Books = [
+    {
+        title: 'Men',
+        authors: ['James', 'Musa'],
+        rating: 4.35
+    },
+    {
+        title: 'Meann',
+        authors: ['Jumas', 'Musa'],
+        rating: 1.35
+    },
+    {
+        title: 'Mene',
+        authors: ['James', 'Musapata'],
+        rating: 4.15
+    },
+    {
+        title: 'Mennee',
+        authors: ['James', 'Musata'],
+        rating: 2.15
+    }
+]
+
+Books.forEach(function (el) {
+    console.log(`${el.title}`)
+})
+Books.forEach(function (el, index) { //forEach can some index as a secong argument
+    console.log(`${index}: ${el.title}`)
+})
+
+//map -- return and array/object based on some function without mutationg original array
+const doubleRating = Books.map(function (el) {
+    return el.rating * 2
+})
+
+const doubleRatingObject = Books.map(function (n) {
+    return {
+        value: n.rating,
+        isEven: n.rating % 2 === 0
+    }
+})
+// console.log(doubleRatingObject)
+
+//Arrow functions
+const cube = (x) => {
+    return x ** 3
+}
+
+const istEven = (x) => {
+    return x % 2 === 0 ? true : false
+}
+
+//Arrow functions implicit returns, no need to write return keyword
+
+const quadRuple = x => x ** 4
+
+const someDoubled = numbers.map(x => 2 * x)
+
+
+//Array.find stops after finding the first one
+const hata = numbers.find(num => num % 3 === 0)
+
+const jata = Books.find(book => book.rating >= 4)
+//console.log(jata.title)
+
+
+//filter find elements in an arrya fitting some property and makes a new array of them
+const yata = Books.filter(book => book.rating > 4)
+//console.log(yata)
+
+//some and every
+const words = ['dot', 'dyt', 'det', 'dut', 'dat', 'diht']
+
+const mana = words.every(word => word.length === 3)
+console.log(mana)
+
+const mmana = words.some(word => word.includes('o'))
+console.log(mmana)
+
+//sort taking callback so to sort numbers 
+const prices = [400.50, 3000, 99.99, 35.99, 12.00]
+
+const ascPrices = prices.sort((a, b) => a - b)
+console.log(ascPrices)
+
+//array.reduce takes array of values and reduce them to single value
+
+const sumOfPrices = prices.reduce((accumulator, currentvalue) => accumulator + currentvalue)
+//console.log(sumOfPrices)
+
+const largestPrice = prices.reduce((a, c) => {
+    return a > c ? a : c
+})
+
+
+const llargestPrice = prices.reduce((a, c) => {
+    return Math.max(a, c)
+})
+
+//reduce with initial value
+const gargestPrice = prices.reduce((a, c) => {
+    return Math.max(a, c)
+}, 4000)
+console.log(gargestPrice)
+
+const votes = ['y', 'n', 'n', 'n', 'y', 'n', 'n', 'n', 'n', 'n', 'n', 'y', 'y']
+
+const results = votes.reduce((tally, val) => {
+    if (tally[val]) {
+        tally[val]++
+    } else {
+        tally[val] = 1
+    }
+    return tally
+}, {})
+
+console.log(results)
