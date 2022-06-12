@@ -275,4 +275,69 @@ const results = votes.reduce((tally, val) => {
     return tally
 }, {})
 
-console.log(results)
+// console.log(results)
+
+//Spread Syntax
+const Prices = [400.50, 3000, 99.99, 35.99, 12.00]
+//console.log(Math.max(...Prices))
+const baja = 'hahamamajaka'
+const votesPrices = [...votes, ...Prices, 'justsomeelement', ...baja]
+// console.log(votesPrices)
+
+//Spread on objects
+//Can only spread object with object
+const feline = {
+    legs: 4,
+    family: 'Feline'
+}
+
+const canine = {
+    family: 'Caninae',
+    furry: true
+}
+
+const felineCaninae = { ...feline, ...canine }
+// console.log(felineCaninae)
+
+//arguments available in all functions (old approach, new version is rest)
+
+//Rest
+function sum(...nums) {         //nums will be an array of arguments
+    return nums.reduce((a, c) => a + c)
+}
+// console.log(sum(1, 2, 3, 4, 5))
+
+function fullName(first, last, ...titles) {     //rest params must be last and can be used with arrow functions
+
+}
+
+// Destructuring Arrays
+const raceResults = [
+    'me', 'shee', 'thee', 'we',
+]
+//assigning some value using raceResults data
+const [fisrt, , , fourth] = raceResults
+const [winner, , ...others] = raceResults
+
+//Destructuring objects
+const runner = {
+    first: 'Fizza',
+    last: 'Zaid',
+    country: 'USA',
+    title: 'First Borne'
+}
+
+const { first, last } = runner
+
+//Make a value called nation based on the coutry
+const { country: nation } = runner
+const { country: place, ...other } = runner
+
+//destructuring parameters
+function print({ first }) {
+    console.log(`The first name is ${first}`)
+}
+
+// print(runner)
+
+// Objects Objects and more Objects
