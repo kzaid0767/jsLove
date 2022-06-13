@@ -155,9 +155,9 @@ btn.addEventListener('click', cry)
 //Array methods with callbacks
 //forEach
 const numbers = [20, 21, 22, 23, 24, 25, 26, 27]
-numbers.forEach(function (el) {
-    console.log(el ** 2)
-})
+// numbers.forEach(function (el) {
+//     console.log(el ** 2)
+// })
 
 const Books = [
     {
@@ -182,12 +182,12 @@ const Books = [
     }
 ]
 
-Books.forEach(function (el) {
-    console.log(`${el.title}`)
-})
-Books.forEach(function (el, index) { //forEach can some index as a secong argument
-    console.log(`${index}: ${el.title}`)
-})
+// Books.forEach(function (el) {
+//     console.log(`${el.title}`)
+// })
+// Books.forEach(function (el, index) { //forEach can some index as a secong argument
+//     console.log(`${index}: ${el.title}`)
+// })
 
 //map -- return and array/object based on some function without mutationg original array
 const doubleRating = Books.map(function (el) {
@@ -341,3 +341,193 @@ function print({ first }) {
 // print(runner)
 
 // Objects Objects and more Objects
+const reviews = [4.5, 5.6, 7.8, 9, 0.5]
+const getStats = (arr) => {
+    const big = Math.max(...arr);
+    const small = Math.min(...arr);
+    return {
+        big,
+        small
+    }
+
+}
+
+const kilo = getStats(reviews)
+
+//computed properties
+const addProp = (obj, k, v) => {
+    return {
+        ...obj,
+        [k]: v
+    }
+}
+
+// console.log(addProp(kilo, 'jambo', 'gani'))
+
+//Method in objects
+const hisabu = {
+    add: function (x, y) {
+        return x + y
+    },
+    divide: function (x, y) {
+        return x / y
+    }
+}
+
+//shorter way of adding methods in objects without using function keyword
+const sabu = {
+    add(x, y) {
+        return x + y
+    },
+    divide(x, y) {
+        return x / y
+    }
+}
+
+//Using the this keyword
+const mtu = {
+    first: 'Sharifa',
+    last: 'Zaid',
+    trait: 'Awesome',
+    fullName() {
+        const { first, last, trait } = this //destructing the properties from this object!!!
+        console.log(`${first} ${last}`)
+    }
+}
+
+mtu.fullName()
+
+//For arrow functions, this refers to window
+
+const annoyer = {
+    phrases: ['hey', 'sure', 'wow', 'hah'],
+    pickPhrase() {
+        return this.phrases[Math.floor(Math.random() * this.phrases.length)]
+    },
+    start() {
+        this.timerId = setInterval(() => (  //setInterreturns an 
+            console.log(this.pickPhrase())
+        ), 3000)
+    },
+    stop() {
+        clearInterval(this.timerId)
+        console.log('Nooo Moooore')
+    }
+}
+//annoyer.start()
+
+// **********************************
+// WRITING EVERYTHING USING FUNCTIONS
+// **********************************
+function initializeDeck() {
+    const deck = [];
+    const suits = ['hearts', 'diamonds', 'spades', 'clubs'];
+    const values = '2,3,4,5,6,7,8,9,10,J,Q,K,A';
+    for (let value of values.split(',')) {
+        for (let suit of suits) {
+            deck.push({
+                value,
+                suit
+            })
+        }
+    }
+    return deck;
+}
+
+function drawCard(deck, drawnCards) {
+    const card = deck.pop();
+    drawnCards.push(card);
+    return card;
+}
+
+function drawMultiple(numCards, deck, drawnCards) {
+    const cards = [];
+    for (let i = 0; i < numCards; i++) {
+        cards.push(drawCard(deck, drawnCards));
+    }
+    return cards;
+}
+
+function shuffle(deck) {
+    // loop over array backwards
+    for (let i = deck.length - 1; i > 0; i--) {
+        //pick random index before current element
+        let j = Math.floor(Math.random() * (i + 1));
+        //swap
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    return deck;
+}
+
+
+// We have to create a bunch of variables:
+const firstDeck = initializeDeck();
+const drawnCards = [];
+shuffle(firstDeck);
+// We have to pass a ton of arguments around:
+const hand1 = drawMultiple(2, firstDeck, drawnCards);
+const hand2 = drawMultiple(2, firstDeck, drawnCards);
+const pokerHand = drawMultiple(5, firstDeck, drawnCards);
+
+
+
+
+
+// **********************************
+// USING AN OBJECT + METHODS INSTEAD:
+// **********************************
+
+const myDeck = {
+    deck: [],
+    drawnCards: [],
+    suits: ['hearts', 'diamonds', 'spades', 'clubs'],
+    values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+    initializeDeck() {
+        const {
+            suits,
+            values,
+            deck
+        } = this;
+        for (let value of values.split(',')) {
+            for (let suit of suits) {
+                deck.push({
+                    value,
+                    suit
+                })
+            }
+        }
+        // return deck;
+    },
+    drawCard() {
+        const card = this.deck.pop();
+        this.drawnCards.push(card);
+        return card;
+    },
+    drawMultiple(numCards) {
+        const cards = [];
+        for (let i = 0; i < numCards; i++) {
+            cards.push(this.drawCard());
+        }
+        return cards;
+    },
+    shuffle() {
+        const {
+            deck //destructuring deck as its being passed
+        } = this;
+        // loop over array backwards
+        for (let i = deck.length - 1; i > 0; i--) {
+            //pick random index before current element
+            let j = Math.floor(Math.random() * (i + 1));
+            //swap
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+    }
+}
+
+// Much cleaner!!
+myDeck.initializeDeck();
+myDeck.shuffle();
+const h1 = myDeck.drawMultiple(2);
+const h2 = myDeck.drawMultiple(2);
+const h3 = myDeck.drawMultiple(5);
+
