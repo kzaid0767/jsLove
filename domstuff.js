@@ -8,7 +8,7 @@ btnSubmit.addEventListener('mouseover', function () {
 
 const anotheImg = document.createElement('img')
 anotheImg.src = 'https://picsum.photos/200/300.webp'
-document.body.append(anotheImg)
+document.querySelector('div.twoPics').appendChild(anotheImg)
 
 setInterval(() => {
     const x = Math.floor(document.body.clientWidth * Math.random())
@@ -62,3 +62,41 @@ alert(h1.innerText)
 const maxRAnge = document.querySelector('input[type="range"]')
 maxRAnge.getAttribute('max')
 maxRAnge.setAttribute('max', 200)
+
+// if wanna affect multiple things, select them and loop over them to make changes
+// style properties in JS are camel case
+
+// Here changing styles of all li's : these work as inline styles
+/*const allLis =  document.querySelectorAll('li')
+const liColors = ['pink', 'orange', 'teal', 'maroon']
+for (let i=0; i<allLis.length; i++) {
+    allLis[i].style.color = liColors[i]
+    allLis[i].innerText = liColors[i]
+
+} */
+
+//getComputedStyle returns object with current style values
+
+
+//addin and removing class using classList
+const todo = document.querySelector('.todo')
+todo.classList.toggle('done')
+
+//Create and append element
+const h3 = document.createElement('h3')
+h3.innerText = 'This was added later'
+document.querySelector('div').insertAdjacentElement('beforeend',h3) 
+//appendChild makes appended last child
+
+//append() and preprend() insert multiple items at the end and beginning
+
+// insertBefore
+const anothLI = document.createElement('li')
+anothLI.innerText = 'Do not Mow'
+const prntUl = document.querySelector('ul')
+prntUl.insertBefore(anothLI, prntUl.firstChild)
+
+//remove() and removeChild()
+//ex h3.removeChild(removedOne)  need to select parent node
+
+//h1.remove()
