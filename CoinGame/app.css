@@ -1,0 +1,39 @@
+img {
+	width: 100px;
+	position: absolute;
+	top: 300px;
+	left: 400px;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+#score {
+	margin: 5px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+input {
+	font-size: 20px;
+}
+
+div {
+	color: gold;
+}
+
+label {
+	font-size: 30px;	
+}
+body {
+	background-image: url(./clouds.jpg);
+}
+
+#player {
+	mix-blend-mode: multiply;
+}
