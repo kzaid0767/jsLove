@@ -1,0 +1,16 @@
+#btn1 {
+    width: 200px;
+}
+
+#btn0 {
+    position: absolute;
+    top: 10px;
+    left: 300px;
+    width: 200px;
+    height: 200px;
+}
+
+.box {
+    height: 50px;
+    border-radius: 50%;
+}
