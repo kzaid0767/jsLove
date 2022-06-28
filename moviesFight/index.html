@@ -13,7 +13,7 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Movie Fight
+          Movie Comparison Station
           <span class="icon">
             <i class="fas fa-film"></i>
           </span>
@@ -22,8 +22,25 @@
     </div>
   </section>
   <div class="container">
-    <input />
+    <div class="columns">
+      <div class="column">
+        <div id="left-autocomplete"></div>
+        <div id="left-summary"></div>
+      </div>
+      <div class="column">
+        <div id="right-autocomplete"></div>
+        <div id="right-summary"></div>
+      </div>
+    </div>
+    <div class="column is-half notification is-primary tutorial">
+      <h1 class="title">Search For a Movie on Both Sides</h1>
+      <p class="subtitle">
+        A search for a movie on this App will tell you which one is the best!
+      </p>
+    </div>
   </div>
+  <script src="utils.js"></script>
+  <script src="autocomplete.js"></script>
   <script src="index.js"></script>
 </body>
 
