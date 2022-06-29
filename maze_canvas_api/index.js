@@ -1,8 +1,8 @@
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter
 
 /* width and height of working canvas */
-const cellsHorizontal = 15
-const cellsVertical = 9
+const cellsHorizontal = 10
+const cellsVertical = 5
 const width = window.innerWidth
 const height = window.innerHeight
 
@@ -26,10 +26,26 @@ Runner.run(Runner.create(), engine)
 
 /* Walls being created */
 const walls = [
-    Bodies.rectangle(width / 2, 0, width, 2, { isStatic: true }),
-    Bodies.rectangle(width / 2, height, width, 2, { isStatic: true }),
-    Bodies.rectangle(0, height / 2, 2, height, { isStatic: true }),
-    Bodies.rectangle(width, height / 2, 2, height, { isStatic: true }),
+    Bodies.rectangle(width / 2, 0, width, 4, {
+        isStatic: true, render: {
+            fillStyle: 'red'
+        }
+    }),
+    Bodies.rectangle(width / 2, height, width, 4, {
+        isStatic: true, render: {
+            fillStyle: 'red'
+        }
+    }),
+    Bodies.rectangle(0, height / 2, 4, height, {
+        isStatic: true, render: {
+            fillStyle: 'red'
+        }
+    }),
+    Bodies.rectangle(width, height / 2, 4, height, {
+        isStatic: true, render: {
+            fillStyle: 'red'
+        }
+    }),
 ]
 World.add(world, walls)
 
@@ -122,7 +138,7 @@ horizontals.forEach((row, rowIndex) => { /* each element of horizontals is an ar
             label: 'wall',
             isStatic: true,
             render: {
-                fillStyle: 'orange'
+                fillStyle: 'purple'
             }
         }
         )
@@ -143,7 +159,7 @@ verticals.forEach((row, rowIndex) => { /* each element of verticals is an array 
             label: 'wall',
             isStatic: true,
             render: {
-                fillStyle: 'orange'
+                fillStyle: 'cyan'
             }
         }
         )
