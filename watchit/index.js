@@ -2,11 +2,14 @@
 /* chokidar a packaget to detect file changes */
 /* Caporal a package that generates help/usage instructions */
 /* lodash.debounce */
+/* node childprocess spawn: ask a program to open another program */
 
 import debounce from 'lodash.debounce'
 import chokidar from 'chokidar'
 import program from 'caporal'
 import fs from 'node:fs/promises'
+import { spawn } from 'node:child_process'
+
 
 program
     .version('0.0.1')
@@ -21,7 +24,7 @@ program
         }
 
         const start = debounce(() => {
-            console.log('user program started')
+            spawn('node', [name], { stdio: 'inherit' })
         }, 100)
 
         chokidar
