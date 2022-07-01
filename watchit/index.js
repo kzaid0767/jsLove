@@ -19,12 +19,17 @@ program
 
         try {
             await fs.promises.access(name)
-        } catch (error) {
+        } catch (err) {
             throw new Error(`Could not find the file ${name}`)
         }
 
+        let proc
+
         const start = debounce(() => {
-            spawn('node', [name], { stdio: 'inherit' })
+            if (proc) {
+                proc.kill
+            }
+            proc = spawn('node', [name], { stdio: 'inherit' })
         }, 100)
 
         chokidar
